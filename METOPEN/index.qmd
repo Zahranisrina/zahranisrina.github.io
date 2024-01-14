@@ -1,0 +1,134 @@
+---
+title: "Pengaruh Jumlah Ekspor Kopi di Indonesia kepada Nilai Tukar Mata Uang Rupiah terhadap Dolar Amerika tahun 2013-2021"
+subtitle: "Metode Penelitian Politeknik APP Jakarta"
+author: "Zahra Nisrina Naura Sunardi"
+date: 2022-01-14
+number-sections: true
+format:
+  html: default
+  docx: default
+---
+
+![](poltekapp.jpg){width="316"}
+
+## Pendahuluan
+
+### Latar belakang
+
+Nilai tukar rupiah adalah harga rupiah terhadap mata uang lain (Adiningsih, 1998). Nilai tukar yang stabil menjadi faktor penting bagi suatu negara guna menciptakan situasi yang kondusif bagi kegiatan ekonomi domestik maupun antarnegara. Melemahnya atau meningkatnya nilai tukar memiliki dampak yang luas serta konsekuensi terhadap harga barang dan jasa yang terdapat pada berbagai negara, tingkat suku bunga, gaji, tingkat produksi, kesempatan kerja dan perekonomian secara luas. Ekspor dapat mempengaruhi nilai tukar mata uang karena meningkatnya kegiatan ekspor dapat mengakibatkan permintaan naik terhadap mata uang negara pengekspor. Jika permintaan naik, maka mata uang tersebut akan menguat.
+
+Kopi merupakan salah satu komoditas produksi ekspor utama indonesia yang paling diminati. Jenis kopi yang diekspor ke mancanegara yakni berasal dari varietas kopi robusta dan arabika. Indonesia juga merupakan salah satu negara pengekspor kopi terbesar di dunia setelah Brazil, Vietnam dan Kolombia. Meningkatnya jumlah ekspor kopi di Indonesia diharapkan dapat meningkatkan nilai tukar mata uang Rupiah terhadap Dolar Amerika (USD).
+
+### Ruang lingkup
+
+Dalam penelitian ini, penulis memilih untuk menggunakan data yang berasal dari Badan Pusat Statistik (BPS) Indonesia. Batasan yang digunakan pada penelitian ini yaitu nilai tukar mata uang Rupiah terhadap Dolar Amerika. Ruang lingkup penelitian ini terdapat 2 variabel yang meliputi jumlah ekspor kopi di Indonesia dengan HS Code 0901 dan nilai tukar Rupiah terhadap Dolar Amerika.
+
+Jenis data yang digunakan adalah Time Series dengan rentang waktu tahun 2015-2022. Menurut Kedutaan Besar Republik Indonesia (2023) ekspor kopi dari Indonesia paling tinggi adalah untuk negara Amerika Serikat, Mesir, Spanyol dan Malaysia.
+
+### Rumusan masalah
+
+1.  Apakah jumlah ekspor kopi di Indonesia memberikan pengaruh kepada nilai tukar mata uang Rupiah terhadap Dolar Amerika?
+2.  Apakah nilai tukar mata uang Rupiah dapat dipengaruhi oleh jumlah ekspor kopi di Indonesia?
+
+### Tujuan dan manfaat penelitian
+
+Tujuan dari penelitian ini terkait dengan latar belakang dan rumusan masalah di atas adalah guna mengetahui apakah dengan meningkatnya jumlah ekspor kopi di Indonesia dapat memberikan surplus positif terhadap kenaikan nilai tukar mata uang Rupiah.
+
+Manfaat penelitian ini adalah guna menambah pengetahuan dan menjadi bahan referensi baik bagi penulis maupun para pembaca.
+
+### Package
+
+Berbagai package yang digunakan dalam penelitian ini adalah sebagai berikut:
+
+```{r}
+library(readxl)
+library(tidyverse)
+```
+
+## Studi pustaka
+
+1.  Ekspor merupakan kegiatan mengeluarkan barang dari daerah pabean ke luar daerah pabean. Menurut Undang-Undang Kepabeanan Nomor 10 Tahun 1995 Tentang Kepabeanan Pasal 1 ayat 2, Daerah Pabean adalah wilayah Republik Indonesia yang meliputi wilayah darat, perairan dan ruang udara diatasnya, serta tempat-tempat tertentu di zona ekonomi eksklusif dan landas kontinen yang didalamnya berlaku undang-undang ini.
+
+2.  Dolar Amerika digunakan sebagai alat transaksi perdagangan internasional sejak perang dunia I sebagai pengganti mata uang Inggris yaitu Poundsterling. Amerika merupakan negara dengan kekuatan militer yang mendominasi, memiliki tingkat Produk Domestik Bruto (PDB) yang tinggi serta kestabilan nilai tukar mata uang Dolar. Hingga saat ini belum ada mata uang lain yang sepenuhnya berpotensi menggantikan Dolar sebagai alat transaksi global.
+
+3.  Berdasarkan Peraturan Menteri Perdagangan Republik Indonesia Nomor 109 Tahun 2018 tentang ketentuan ekspor kopi, dinyatakan bahwa ekspor kopi dilakukan pembatasan terhadap jenis kopi tertentu berdasarkan Undang-Undang tersebut hanya dapat diekspor oleh perusahaan yang telah mendapatkan Eksportir Terdaftar Kopi (ETK). Bagi sebuah perusahaan yang telah memiliki ETK, wajib mengekspor kopi setidaknya satu kali dalam satu tahun kopi (mulai dari 1 Oktober - 30 September di tahun berikutnya).
+
+## Metode penelitian
+
+### Data
+
+Berikut ini adalah data yang digunakan sebagai objek untuk mendukung penelitian, yang memuat data jumlah ekspor kopi di Indonesia dan data nilai tukar mata uang Rupiah terhadap Dolar Amerika.
+
+| TAHUN | JEK    | NTR       |
+|-------|--------|-----------|
+| 2013  | 534,02 | Rp.12.189 |
+| 2014  | 384,82 | Rp.12.440 |
+| 2015  | 502,02 | Rp.13.795 |
+| 2016  | 414,65 | Rp.13.436 |
+| 2017  | 467,80 | Rp.13.548 |
+| 2018  | 279,76 | Rp.14.481 |
+| 2019  | 359,05 | Rp.14.102 |
+| 2020  | 379,45 | Rp.14.105 |
+| 2021  | 387,26 | Rp.14.331 |
+
+![Badan Pusat Statistik](logo_bps.png){width="286"}
+
+Penelitian ini menggunakan data sekunder berbentuk time series dengan kurun waktu 2013-2021, yang diperoleh dari Badan Pusat Statistik Indonesia.
+
+Baca data
+
+```{r}
+library(tidyverse)
+dat<-read_excel('data_fix.xlsx')
+ head(dat)
+```
+
+```{r}
+library(readxl)
+library(tidyverse)
+dat<-read_excel('data_fix.xlsx')
+plot(dat$X,dat$Y,xlab="Jumlah Ekspor Kopi",ylab="Nilai Tukar Rupiah")
+```
+
+### Metode analisis
+
+Jenis metode analisis yang dipilih dalam penelitian ini adalah OLS (Ordinary Least Square) dengan jumlah 1 variabel independen. Penelitian ini bermaksud mencari hubungan antara Jumlah Ekspor Kopi (JEK) dan Nilai Tukar Rupiah (NTR). Dengan spesifikasi sebagai berikut:
+
+$$
+y_{t}=\beta_0 + \beta_1 x_t+\mu_t
+$$ di mana $y_t$ adalah JEK dan $x_t$ adalah NTR.
+
+## Pembahasan
+
+### Pembahasan masalah
+
+Dikarenakan dalam penelitian ini menggunakan Ordinary Least Square (OLS), maka di dalam pembahasan ini menggunakan hubungan antara Jumlah Ekspor Kopi di Indonesia dengan Nilai Tukar Rupiah dengan tampilan sebagai berikut.
+
+```{r}
+library(readxl)
+dat<-read_excel('data_fix.xlsx')
+head(dat)
+```
+
+### Analisis masalah
+
+Hasil regresinya adalah
+
+```{r}
+reg1<-lm(Y~X,data=dat)
+summary(reg1)
+```
+
+## Kesimpulan
+
+Bagian ini berisi jawaban dari permasalahan dan tujuan yang diajukan pada laporan, yang diperoleh dari hasil pembahasan dan usulan perbaikan. Saran merupakan tindak lanjut dari kesimpulan, berupa anjuran atau rekomendasi yang disampaikan secara ringkas dan dapat diimplementasikan
+
+##Saran
+
+Penguatan Nilai Tukar Rupiah perlu ditopang dengan variabel lain seperti peningkatan jumlah ekspor pada komoditas lain.
+
+## Referensi
+
+Dewi, N. (n.d.). PENGARUH EKSPOR, IMPOR, INFLASI, DAN PERTUMBUHAN EKONOMI TERHADAP NILAI TUKAR DI INDONESIA. https://jurnal.untan.ac.id/index.php/JEDA2/article/viewFile/45214/75676588398#:\~:text=Ekspor%20dapat%20mempengaruhi%20pergerakan%20nilai,valuta%20asing%20di%20negara%20tersebut, diakses pada tanggal 13 Januari 2024.
+
+INDONESIA INVESTMENTS (2023). Kopi. Available at: https://www.indonesia-investments.com/id/bisnis/komoditas/kopi/item186?, diakses pada tanggal 13 Januari 2024.
